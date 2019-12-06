@@ -23,16 +23,11 @@
                         <a class="dropdown-item" href="#">Something else here</a>
                     </div>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-                </li>
+                
             </ul>
-            <form class="form-inline my-2 my-lg-0" action="usercontrol.php" >
-                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-            </form>
+            
             <div class="my-2 my-lg-0">
-                <a class= "btn btn-primary" href="usecontrol.php?acao=sair" role="button">Pal no gato?</a>
+                <a class= "btn btn-primary" href="usecontrol.php?acao=sair" role="button">Guilherme é fofo</a>
             </div>
         </div>
     </nav>

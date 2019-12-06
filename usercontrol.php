@@ -25,6 +25,14 @@ switch ($acao) {
         $users->trocaSenha($id, $senha);
         break;
 
+    case 'trocaEmail':
+        $users = new UsuarioDAO();
+        $id = $_POST["id"];
+        $nome = $_POST["nome"];
+        $email = $_POST["email"];
+        $users->trocaEmail($id, $nome, $email);
+        break;
+
     case 'logar':
         $users = new UsuarioDAO();
         $users->email = $_POST["email"];

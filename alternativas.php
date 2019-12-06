@@ -1,6 +1,9 @@
 <?php
 require("verificaUsuario.php");
 include "alternativasDAO.php";
+
+$idQuestao = $_GET["idQuestao"]
+
 $alternativasDAO = new alternativasDAO();
 $listaDeAlternativas = ($alternativasDAO->buscarAlternativas());
 

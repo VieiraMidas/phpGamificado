@@ -60,6 +60,18 @@ class UsuarioDAO
 
     }
 
+    public function trocaEmail($id, $nome, $email)
+    {
+        $sql = "UPDATE users SET Email='$email' nome='$nome' WHERE UserID='$id'";
+        $rs = $this->con->query($sql);
+        if ($rs) {
+            header("Location: /usuarios");
+        } else {
+            echo $this->con->error;
+        }
+
+    }
+
     public function logar()
     {
         $sql = "SELECT * FROM users WHERE
