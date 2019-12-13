@@ -13,15 +13,16 @@ switch ($acao){
 
     case 'trocarAlternativa':
         $alternativas = new alternativasDAO();
-        $id = $_POST["id"];
-        $texto = $_POST["texto"];
-        $alternativas->trocarAlternativa($idAlternativas, $texto);
+        $alternativas->id = $_POST["id"];
+        $alternativas->correta = $_POST["correta"];
+        $alternativas->texto = $_POST["texto"];
+        $alternativas->trocarAlternativas();
     break;
 
     case 'apagarAlternativa':
         $alternativas = new alternativasDAO();
-        $id = $_GET["id"];
-        $alternativas->apagarAlternativa($id);
+        $alternativas->id = $_GET["id"];
+        $alternativas->apagarAlternativas();
     break;
 
     default:

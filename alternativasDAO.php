@@ -9,27 +9,30 @@ class alternativasDAO{
     public $idQuestao;
     private $conAlternativa;
 
-    function __construct(){
+    public function __construct(){
         $this->conAlternativa = mysqli_connect(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
     }
     public function inserirAlternativa(){
         $sql = "INSERT INTO  alternativas  VALUES(0, '$this->texto','$this->correta', '$this->idQuestao')";
         $rs = $this->conAlternativa->query($sql);
-        if($rs){
-            header("Location: /alternativas");
-        } else{
-            echo $this->conAlternativa->error;
+        session_start();
+        if ($rs) {
+            $_SESSION["success"] = "Inserção de alternativa realizada com sucesso";
+        } else {
+            $_SESSION["dangen"] = "Error Fatal...você não conseguiu inserir a alternativa ;)";
         }
+        header("Location: /alternativas");
     }
     public function trocarAlternativas(){
-        $sql = "UPDATE alternativas SET texto WHERE idAlternativa = $id";
+        $sql = "UPDATE alternativas SET texto = '$this->texto', correta = '$this->correta' WHERE idAlternativa = '$this->id'";
         $rs = $this->conAlternativa->query($sql);
-        if($rs){
-            header("Location: /alternativas");
+        session_start();
+        if ($rs) {
+            $_SESSION["success"] = "Troca de informações da alternativa realizada com sucesso";
+        } else {
+            $_SESSION["dangen"] = "Error Fatal...você não conseguiu realizar a troca de informações da alternativa ;)";
         }
-        else{
-            echo $this->conAlternativa->error;
-        }
+        header("Location: /alternativas");
     }
     public function buscarAlternativas(){
         $sql = "SELECT * FROM alternativas";
@@ -39,15 +42,16 @@ class alternativasDAO{
         }
         return $listaDeAlternativas;
     }
-    public function apagarAlternativas($idAlternativa){
-        $sql = "DELETE FROM alternativas WHERE idAlternativa = $id";
+    public function apagarAlternativas(){
+        $sql = "DELETE FROM alternativas WHERE idAlternativa = $this->id";
         $rs = $this->conAlternativa->query($sql);
-        if($rs){
-            header("Location: /alternativas");
+        session_start();
+        if ($rs) {
+            $_SESSION["success"] = "Exclusão de alternativa realizada com sucesso";
+        } else {
+            $_SESSION["dangen"] = "Error Fatal...você não conseguiu apagar a alternativa;)";
         }
-        else{
-            echo $this->conAlternativa->error;
-        }
+        header("Location: /alternativas");
     }
 
 }

@@ -16,18 +16,24 @@ class quizDAO
 	public function inserirQuiz(){
 		$sql = "INSERT INTO questions VALUES (0, '$this->Desafio', '$this->TDesafio')"; 
         $rs = $this->conQuiz->query($sql);
-        if($rs)
-            header("Location: /questoes");
-        else
-            echo $this->conQuiz->error;
+        session_start();
+        if ($rs) {
+            $_SESSION["success"] = "Inserção de questão realizada com sucesso";
+        } else {
+            $_SESSION["dangen"] = "Error Fatal...você não conseguiu inserir a questão ;)";
+        }
+        header("Location: /questoes");
 	}
 	public function trocarQuiz(){
-        $sql = "UPDATE questions SET Desafio WHERE IDDesafio=$id";
+        $sql = "UPDATE questions SET Desafio='$this->Desafio', TDesafio='$this->TDesafio' WHERE IDDesafio='$this->id'";
         $rs = $this->conQuiz->query($sql);
-        if($rs)
-            header("Location: /questoes");
-        else
-            echo $this->conQuiz->error;
+        session_start();
+        if ($rs) {
+            $_SESSION["success"] = "Troca de informações da questão realizada com sucesso";
+        } else {
+            $_SESSION["dangen"] = "Error Fatal...você não conseguiu as informações da questão ;)";
+        }
+        header("Location: /questoes");
     }
     public function buscarQuiz(){
         
@@ -38,11 +44,16 @@ class quizDAO
         }
         return $listaDePerguntas;
     }
-	public function apagarQuiz($id){
-		$sql = "DELETE FROM questions WHERE IDDesafio=$id";
+	public function apagarQuiz(){
+		$sql = "DELETE FROM questions WHERE IDDesafio=$this->id";
         $rs = $this->conQuiz->query($sql);
-        if ($rs) header("Location: /questoes");
-        else echo $this->conQuiz->error;
+        session_start();
+        if ($rs) {
+            $_SESSION["success"] = "Exclusão da questão realizada com sucesso";
+        } else {
+            $_SESSION["dangen"] = "Error Fatal...você não conseguiu excluir a questão ;)";
+        }
+        header("Location: /questoes");
 	}
 	
 }

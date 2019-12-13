@@ -27,7 +27,7 @@
             </ul>
             
             <div class="my-2 my-lg-0">
-                <a class= "btn btn-primary" href="usecontrol.php?acao=sair" role="button">Guilherme é fofo</a>
+                <a class= "btn btn-primary" href="usercontrol.php?acao=sair" role="button">Sair</a>
             </div>
         </div>
     </nav>

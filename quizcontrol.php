@@ -11,15 +11,16 @@ switch ($acao) {
         
     case 'apagarQuiz':
         $questions = new quizDAO();
-        $id =  $_GET["id"];
-        $questions->apagarQuiz($id);
+        $questions->id =  $_GET["id"];
+        $questions->apagarQuiz();
         break;
     
     case 'trocarQuiz':
         $questions = new quizDAO();
-        $id =  $_POST["id"];
-        $Desafio =  $_POST["Desafio"];
-        $questions->trocarQuiz($IDDesafio, $Desafio);
+        $questions->id =  $_POST["id"];
+        $questions->TDesafio = $_POST["TDesafio"];
+        $questions->Desafio =  $_POST["Desafio"];
+        $questions->trocarQuiz();
         break;
     
     default:

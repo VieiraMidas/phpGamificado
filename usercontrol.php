@@ -14,23 +14,23 @@ switch ($acao) {
 
     case 'apagar':
         $users = new UsuarioDAO();
-        $id = $_GET["id"];
-        $users->apagar($id);
+        $users->id = $_GET["id"];
+        $users->apagar();
         break;
 
     case 'trocaSenha':
         $users = new UsuarioDAO();
-        $id = $_POST["id"];
-        $senha = $_POST["senha"];
-        $users->trocaSenha($id, $senha);
+        $users->id = $_POST["id"];
+        $users->senha = $_POST["senha"];
+        $users->trocaSenha();
         break;
 
     case 'trocaEmail':
         $users = new UsuarioDAO();
-        $id = $_POST["id"];
-        $nome = $_POST["nome"];
-        $email = $_POST["email"];
-        $users->trocaEmail($id, $nome, $email);
+        $users->id = $_POST["id"];
+        $users->nome = $_POST["nome"];
+        $users->email = $_POST["email"];
+        $users->trocaEmail();
         break;
 
     case 'logar':
@@ -41,8 +41,8 @@ switch ($acao) {
         break;
     case 'editar':
         $users = new UsuarioDAO();
-        $id = $_POST["id"];
-        $email = $_POST["email"];
+        $users->id = $_POST["id"];
+        $users->email = $_POST["email"];
         $users->editar($id, $email);
         break;
     case 'sair':

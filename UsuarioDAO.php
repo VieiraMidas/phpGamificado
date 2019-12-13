@@ -11,10 +11,10 @@ class UsuarioDAO
     {
         $this->con = mysqli_connect(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
     }
-    public function apagar($id)
+    public function apagar()
     {
 
-        $sql = "DELETE FROM users WHERE UserID=$id";
+        $sql = "DELETE FROM users WHERE UserID=$this->id";
         $rs = $this->con->query($sql);
         session_start();
         if ($rs) {
@@ -30,11 +30,13 @@ class UsuarioDAO
 
         $sql = "INSERT INTO users VALUES (0, '$this->nome', '$this->email', md5('$this->senha'))";
         $rs = $this->con->query($sql);
+        session_start();
         if ($rs) {
-            header("Location: /usuarios");
+            $_SESSION["success"] = "usuário inserido com sucesso";
         } else {
-            echo $this->con->error;
+            $_SESSION["dangen"] = "Error Fatal...você não conseguiu inserir ;)";
         }
+        header("Location: /usuarios");
 
     }
     public function buscar()
@@ -48,27 +50,31 @@ class UsuarioDAO
         return $listaDeUsuarios;
     }
 
-    public function trocaSenha($id, $senha)
+    public function trocaSenha()
     {
-        $sql = "UPDATE users SET Senha=md5('$senha') WHERE UserID='$id'";
+        $sql = "UPDATE users SET Senha=md5('$this->senha') WHERE UserID='$this->id'";
         $rs = $this->con->query($sql);
+        session_start();
         if ($rs) {
-            header("Location: /usuarios");
+            $_SESSION["success"] = "Troca de senha realizada com sucesso";
         } else {
-            echo $this->con->error;
+            $_SESSION["dangen"] = "Error Fatal...você não conseguiu trocar a senha do usuário ;)";
         }
+        header("Location: /usuarios");
 
     }
 
-    public function trocaEmail($id, $nome, $email)
+    public function trocaEmail()
     {
-        $sql = "UPDATE users SET Email='$email' nome='$nome' WHERE UserID='$id'";
+        $sql = "UPDATE users SET Email='$this->email', Nome='$this->nome' WHERE UserID='$this->id'";
         $rs = $this->con->query($sql);
+        session_start();
         if ($rs) {
-            header("Location: /usuarios");
+            $_SESSION["success"] = "Atualização realizada com sucesso";
         } else {
-            echo $this->con->error;
+            $_SESSION["dangen"] = "Error Fatal...você não conseguiu realizar a atualização do usuário ;)";
         }
+        header("Location: /usuarios");
 
     }
 
@@ -78,7 +84,7 @@ class UsuarioDAO
             email='$this->email' AND
             senha=md5('$this->senha')";
         $rs = $this->con->query($sql);
-        if ($rs->num_rows) {
+        if ($rs->num_rows>0) {
             session_start();
             $_SESSION["logado"] = true;
             header("Location:/usuarios");
@@ -88,6 +94,7 @@ class UsuarioDAO
     }
     public function sair()
     {
+        session_start();
         session_destroy();
         header("Location: /");
     }
