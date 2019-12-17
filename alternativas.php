@@ -4,7 +4,10 @@ include "alternativasDAO.php";
 include "alertas.php";
 
 $alternativasDAO = new alternativasDAO();
+$alternativasDAO->idQuestao=$_GET["idQuestaoAlt"];
 $listaDeAlternativas = ($alternativasDAO->buscarAlternativas());
+
+echo $alternativasDAO->idQuestao;
 
 include "cabecalho.php";
 include "menuLateral.php";?>

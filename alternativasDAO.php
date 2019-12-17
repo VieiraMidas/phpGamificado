@@ -21,7 +21,7 @@ class alternativasDAO{
         } else {
             $_SESSION["dangen"] = "Error Fatal...você não conseguiu inserir a alternativa ;)";
         }
-        header("Location: /alternativas");
+        header("Location: /alternativas?idQuestaoAlt=".$this->idQuestao);
     }
     public function trocarAlternativas(){
         $sql = "UPDATE alternativas SET texto = '$this->texto', correta = '$this->correta' WHERE idAlternativa = '$this->id'";

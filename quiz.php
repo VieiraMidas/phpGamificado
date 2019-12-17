@@ -44,7 +44,7 @@ include "menuLateral.php";
                     <td><?= $questions->Desafio?></td>
                     <td><?= $questions->TDesafio?></td>
                     <td>
-                        <a href="alternativas.php" class="btn btn-dark" href="\alternativas?idQuestao=<?=$questions->IDDesafio?>"><i class="fas fa-list-ol"></i></a>
+                        <a class="btn btn-dark" href="/alternativas?idQuestaoAlt=<?= $questions->IDDesafio?>"><i class="fas fa-list-ol"></i></a>
                         <button class="btn btn-warning alterar-questao" data-id="<?= $questions->IDDesafio?>"><i class="fas fa-pen" data-toggle="modal" data-target="#modalEditar"></i></button>
                         <a class="btn btn-danger" href="quizcontrol.php?acao=apagarQuiz&id=<?= $questions->IDDesafio?>"><i class="fas fa-trash-alt"></i></a>
                     </td>
